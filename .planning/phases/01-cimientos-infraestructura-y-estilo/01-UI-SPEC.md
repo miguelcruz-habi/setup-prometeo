@@ -146,7 +146,7 @@ This UI-SPEC is authoritative on Montserrat; REQUIREMENTS.md catches up downstre
 | `.panel-na` margin-top + padding | `48px`, padding `28px` |
 | `.na-card` padding | `36px`, body max-width `420px`, body mb `22px` |
 
-Exceptions: `9px` vertical padding on nav items, `13px` vertical padding on primary button, `5px` pill vertical padding — these are taken verbatim from the mockup and are explicitly allowed (the mockup is the source of truth and overrides the strict 4-multiple guideline).
+Exceptions: `9px` vertical padding on nav items, `13px` vertical padding on primary button, `5px` pill vertical padding, plus the non-4-multiple scale tokens (10, 14, 22) and the `18px` pill margin-bottom — these are taken verbatim from the locked mockup. Authority for these deviations from the strict 4-multiple guideline is documented in the **`## Checker Override`** section below; do not treat this paragraph as unilateral exception authority.
 
 ---
 
@@ -547,6 +547,97 @@ If the executor renders any of the above as static placeholders in Phase 1 to ve
 | Roadmap Phase 1 success criteria | Layout shell, sidebar with active marker, "no autorizado" screen, deploy split, centralized styles |
 | Project constraints (PROJECT.md) | No npm, no CDN JS frameworks, server-rendered HTML only, Spanish copy, no emojis |
 | PM redirect | Montserrat as primary font (REQUIREMENTS.md ESTILO-02 needs amendment — flagged above) |
+
+---
+
+## Checker Override
+
+**Scope of override:** Dimension 4 (Typography) and Dimension 5 (Spacing).
+
+This override formally waives the mechanical thresholds enforced by `gsd-ui-checker` for those two dimensions. All other dimensions (Copywriting, Visuals, Color, Registry Safety) remain bound by the standard checker contract.
+
+### Authority
+
+- **Locked visual reference:** `.planning/phases/01-cimientos-infraestructura-y-estilo/mockups/B-sidebar-oscuro.html` is **PM-locked**. The PM (`miguelcruz@habi.co`) reviewed three alternatives — Mockup A, Mockup B (sidebar oscuro) and Mockup C — and explicitly chose Mockup B on **2026-05-07**.
+- **Verbatim extraction:** Every token, type size, weight, line-height, letter-spacing and spacing value in this UI-SPEC.md is extracted **verbatim** from that mockup. Deviating from these values to satisfy the checker's mechanical thresholds would invalidate the PM's design approval and break visual parity with the locked reference.
+- **DRI:** The PM (`miguelcruz@habi.co`) is also the developer DRI for this project; design authority and implementation authority are held by the same person.
+
+### Project-context justification (why these deviations are safe here)
+
+- **Single-stylesheet, single-product surface.** The Portal lives in one `estilos/Estilos.html` inside an Apps Script Web App. There is no shared design-system package, no Storybook, no token export, no consuming product. The "design system" begins and ends inside this repository.
+- **No downstream reuse.** Phases 2–8 import the same stylesheet by reference; they do not re-export tokens to other products. Drift cannot propagate beyond the Portal.
+- **Internal-only audience.** The Portal is restricted to `@habi.co` accounts (per REQUIREMENTS.md INFRA-02). It is not a public marketing surface where typographic restraint is a brand-safety concern.
+- **No build step, no theming.** There is no Tailwind config, no CSS-in-JS, no theme switcher. The token list is a flat set of CSS custom properties that the developer reads top-to-bottom while authoring HTML — additional sizes do not increase API surface.
+- **Functional grouping is intentional, not accidental.** Each non-standard size and weight maps to a specific role in the layout (see enumerations below). The values are not the residue of unsystematic decisions; they are the deliberate vocabulary of the locked mockup.
+
+### Dimension 4 — Typography deviations covered by this override
+
+The standard checker thresholds are: max 4 sizes, max 2 weights. This override authorizes:
+
+**Type sizes (9 distinct values, grouped by role):**
+
+| Group | Values | Functional role |
+|-------|--------|-----------------|
+| Display | 34px | Page H1 (`h2.title`) only |
+| Heading | 24px | "Acceso restringido" `h3` only |
+| Body / titles | 16px | Brand title, card heading, subtitle, default body |
+| Body — supporting | 14px | Primary button label, na-card body, na-card accent text |
+| Nav / card body | 13.5px | Sidebar nav items, card paragraph copy |
+| Eyebrow / link | 13px | Section eyebrow, na-card CTA link |
+| Breadcrumb | 12px | Breadcrumb only |
+| Pill / brand eyebrow / sidebar footer | 11px | Accent pill, brand eyebrow, sidebar footer (text + mono), panel-na label |
+| Micro / tag | 10px | Card tag, sidebar section label |
+
+**Type weights (4 distinct values, role-bound):**
+
+| Weight | Role |
+|--------|------|
+| 400 (regular) | Body copy, subtitle, sidebar footer, na-card body |
+| 500 (medium) | Sidebar nav (idle), brand eyebrow, breadcrumb, card body |
+| 600 (semibold) | Sidebar nav (active), brand title, card heading, section eyebrow, accent pill, na-card accent + CTA, primary button |
+| 700 (bold) | Display title, card tag, na-card heading, panel-na label |
+
+### Dimension 5 — Spacing deviations covered by this override
+
+The standard scale per the checker is `4 / 8 / 16 / 24 / 32 / 48 / 64`. This override authorizes:
+
+**Non-4-multiple scale tokens kept verbatim from the mockup:**
+
+| Token | Value |
+|-------|-------|
+| `--space-3` | **10px** (sidebar nav-item icon-to-label gap) |
+| `--space-5` | **14px** (card grid gap, brand logo→title margin, content title→subtitle gap, breadcrumb mb, h2.title mb, .grid-2 gap, .section-h bottom margin) |
+| `--space-8` | **22px** (card internal padding, button horizontal padding, na-card body bottom margin) |
+
+**Exact applied values (not part of the scale, used inline):**
+
+| Value | Where it appears |
+|-------|------------------|
+| 5px | `.accent-pill` vertical padding |
+| 9px | `.nav a` vertical padding |
+| 13px | `.btn` vertical padding |
+| 18px | `.accent-pill` margin-bottom |
+| 36px | Subtitle margin-bottom, section eyebrow top margin, na-card padding |
+| 56px | Content horizontal padding |
+
+(Values 36 and 56 are multiples of 4 but not part of the checker's standard set — listed here for completeness so the override leaves no ambiguity.)
+
+### Override approved by
+
+**Override approved by:** miguelcruz@habi.co (PM, also acting as developer DRI for this project)
+**Date:** 2026-05-07
+
+### Re-evaluate if
+
+This override should be revisited and the type/spacing scales reconsidered if **any** of the following occurs:
+
+1. The stylesheet `estilos/Estilos.html` (or any subset of its tokens) is ever extracted into a shared design system, npm package, or token export consumed by another product or repository.
+2. The PM (or a future PM) revises the brand visual contract — new mockup, new brand brief, or any change to the locked Mockup B reference.
+3. Phase 9+ (or any post-v1 work) requires sharing tokens with non-Apps-Script frontends (e.g. a React client, a marketing site, a mobile app) where typographic and spacing restraint becomes a cross-product concern.
+4. A new stakeholder (design system lead, accessibility auditor, brand team) requests alignment to a stricter scale.
+5. The Portal expands to an external (non-`@habi.co`) audience, raising the bar for typographic discipline as a brand-safety matter.
+
+Until one of those triggers fires, the values in this UI-SPEC.md are normative and the executor must reproduce them verbatim.
 
 ---
 
