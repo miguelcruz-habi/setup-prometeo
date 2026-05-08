@@ -118,57 +118,70 @@ Excluidos explícitamente. Documentados para evitar scope creep.
 
 ## Traceability
 
-Mapeo de requisitos a fases. Lo completa el roadmapper en el siguiente paso.
+Mapeo de requisitos a fases. Cada requisito v1 mapea a exactamente una fase.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| INFRA-01 | TBD | Pending |
-| INFRA-02 | TBD | Pending |
-| INFRA-03 | TBD | Pending |
-| INFRA-04 | TBD | Pending |
-| INFRA-05 | TBD | Pending |
-| INFRA-06 | TBD | Pending |
-| INFRA-07 | TBD | Pending |
-| ESTILO-01 | TBD | Pending |
-| ESTILO-02 | TBD | Pending |
-| ESTILO-03 | TBD | Pending |
-| ESTILO-04 | TBD | Pending |
-| HOME-01 | TBD | Pending |
-| HOME-02 | TBD | Pending |
-| HOME-03 | TBD | Pending |
-| HOME-04 | TBD | Pending |
-| HOME-05 | TBD | Pending |
-| ACCESOS-01 | TBD | Pending |
-| ACCESOS-02 | TBD | Pending |
-| ACCESOS-03 | TBD | Pending |
-| RUTA-01 | TBD | Pending |
-| RUTA-02 | TBD | Pending |
-| SETUP-01 | TBD | Pending |
-| SETUP-02 | TBD | Pending |
-| SETUP-03 | TBD | Pending |
-| SETUP-04 | TBD | Pending |
-| PREWORK-01 | TBD | Pending |
-| PREWORK-02 | TBD | Pending |
-| PREWORK-03 | TBD | Pending |
-| CONSTRUYE-01 | TBD | Pending |
-| CONSTRUYE-02 | TBD | Pending |
-| PROD-01 | TBD | Pending |
-| PROD-02 | TBD | Pending |
-| PROD-03 | TBD | Pending |
-| PROD-04 | TBD | Pending |
-| PROD-05 | TBD | Pending |
-| CTA-01 | TBD | Pending |
-| CTA-02 | TBD | Pending |
-| CTA-03 | TBD | Pending |
-| CTA-04 | TBD | Pending |
-| CTA-05 | TBD | Pending |
-| CTA-06 | TBD | Pending |
+| INFRA-01 | Phase 1 | Pending |
+| INFRA-02 | Phase 1 | Pending |
+| INFRA-03 | Phase 1 | Pending |
+| INFRA-04 | Phase 1 | Pending |
+| INFRA-05 | Phase 1 | Pending |
+| INFRA-06 | Phase 1 | Pending |
+| INFRA-07 | Phase 1 | Pending |
+| ESTILO-01 | Phase 1 | Pending |
+| ESTILO-02 | Phase 1 | Pending |
+| ESTILO-03 | Phase 1 | Pending |
+| ESTILO-04 | Phase 1 | Pending |
+| HOME-01 | Phase 2 | Pending |
+| HOME-02 | Phase 2 | Pending |
+| HOME-03 | Phase 2 | Pending |
+| HOME-04 | Phase 2 | Pending |
+| HOME-05 | Phase 2 | Pending |
+| CTA-01 | Phase 2 | Pending |
+| CTA-02 | Phase 2 | Pending |
+| CTA-03 | Phase 2 | Pending |
+| CTA-04 | Phase 2 | Pending |
+| CTA-05 | Phase 2 | Pending |
+| CTA-06 | Phase 2 | Pending |
+| ACCESOS-01 | Phase 3 | Pending |
+| ACCESOS-02 | Phase 3 | Pending |
+| ACCESOS-03 | Phase 3 | Pending |
+| RUTA-01 | Phase 4 | Pending |
+| RUTA-02 | Phase 4 | Pending |
+| SETUP-01 | Phase 5 | Pending |
+| SETUP-02 | Phase 5 | Pending |
+| SETUP-03 | Phase 5 | Pending |
+| SETUP-04 | Phase 5 | Pending |
+| PREWORK-01 | Phase 6 | Pending |
+| PREWORK-02 | Phase 6 | Pending |
+| PREWORK-03 | Phase 6 | Pending |
+| CONSTRUYE-01 | Phase 7 | Pending |
+| CONSTRUYE-02 | Phase 7 | Pending |
+| PROD-01 | Phase 8 | Pending |
+| PROD-02 | Phase 8 | Pending |
+| PROD-03 | Phase 8 | Pending |
+| PROD-04 | Phase 8 | Pending |
+| PROD-05 | Phase 8 | Pending |
 
 **Coverage:**
 - v1 requirements: 41 total
-- Mapped to phases: 0 (pending roadmap)
-- Unmapped: 41 ⚠️ (pending roadmap)
+- Mapped to phases: 41 ✓
+- Unmapped: 0
+
+**Distribución por fase:**
+
+| Phase | Name | Reqs | Count |
+|-------|------|------|-------|
+| 1 | Cimientos (Infraestructura y Estilo) | INFRA-01..07, ESTILO-01..04 | 11 |
+| 2 | Home + CTA "Pedir accesos" | HOME-01..05, CTA-01..06 | 11 |
+| 3 | Accesos previos | ACCESOS-01..03 | 3 |
+| 4 | Ruta de aprendizaje | RUTA-01..02 | 2 |
+| 5 | Setup del computador | SETUP-01..04 | 4 |
+| 6 | Pre work de negocio | PREWORK-01..03 | 3 |
+| 7 | Construye | CONSTRUYE-01..02 | 2 |
+| 8 | Paso a producción | PROD-01..05 | 5 |
 
 ---
 *Requirements defined: 2026-05-07*
-*Last updated: 2026-05-07 after initial definition*
+*Last updated: 2026-05-07 after roadmap creation (41/41 mapped to 8 phases)*
